@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "iceloggedblocks",
+  "version": "${version}",
+  "name": "Icelogged Blocks",
+  "description": "Adds frozen version of waterlogged blocks",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/iceloggedblocks/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.nottouchedgrass.icelogged.client.IceloggedModClient"
+    ],
+    "main": [
+      "com.nottouchedgrass.icelogged.IceloggedMod"
+    ]
+  },
+  "mixins": [
+    "iceloggedblocks.mixins.json",
+    {
+      "config": "iceloggedblocks.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

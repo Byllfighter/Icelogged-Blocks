@@ -1,0 +1,21 @@
+{
+    "model": {
+        "type": "minecraft:composite",
+
+        "models": [
+			{
+				"type": "minecraft:special",
+
+				"base": "minecraft:block/ice",
+				"model": {
+						"type": "iceloggedblocks:icelogged_special_renderer"
+				}
+			},
+			{
+				"type": "minecraft:model",
+				"model": "minecraft:block/ice"
+			}
+		]
+	}
+   
+}

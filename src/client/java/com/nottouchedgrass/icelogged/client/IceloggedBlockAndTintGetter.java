@@ -1,0 +1,73 @@
+package com.nottouchedgrass.icelogged.client;
+
+import com.nottouchedgrass.icelogged.IceloggedMod;
+import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.ColorResolver;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.lighting.LevelLightEngine;
+import net.minecraft.world.level.material.FluidState;
+import org.jspecify.annotations.Nullable;
+
+public class IceloggedBlockAndTintGetter implements BlockAndTintGetter {
+
+    public Level level;
+
+    public IceloggedBlockAndTintGetter(Level level) {
+        this.level = level;
+    }
+
+    @Override
+    public float getShade(Direction direction, boolean bl) {
+        return level.getShade(direction, bl);
+    }
+
+    @Override
+    public LevelLightEngine getLightEngine() {
+        return level.getLightEngine();
+    }
+
+    @Override
+    public int getBlockTint(BlockPos blockPos, ColorResolver colorResolver) {
+        return level.getBlockTint(blockPos, colorResolver);
+    }
+
+    @Override
+    public @Nullable BlockEntity getBlockEntity(BlockPos blockPos) {
+        return level.getBlockEntity(blockPos);
+    }
+
+    @Override
+    public BlockState getBlockState(BlockPos blockPos) {
+        if (level.getBlockState(blockPos).is(IceloggedMod.ICELOGGED_BLOCK)) {
+            BlockEntity blockEntity = level.getBlockEntity(blockPos);
+            if (blockEntity != null) {
+                if (blockEntity instanceof IceloggedBlockEntity iceloggedBlockEntity) {
+                    if (iceloggedBlockEntity.innerState.isPresent()) {
+                        return iceloggedBlockEntity.innerState.get();
+                    }
+                }
+            }
+        }
+        return level.getBlockState(blockPos);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockPos blockPos) {
+        return level.getFluidState(blockPos);
+    }
+
+    @Override
+    public int getHeight() {
+        return level.getHeight();
+    }
+
+    @Override
+    public int getMinY() {
+        return level.getMinY();
+    }
+}

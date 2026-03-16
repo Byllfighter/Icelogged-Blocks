@@ -1,13 +1,11 @@
 package com.nottouchedgrass.icelogged.blocks;
 
-import com.nottouchedgrass.icelogged.IceloggedMod;
+import com.mojang.serialization.MapCodec;
 import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
 import com.nottouchedgrass.icelogged.payloads.S2CUpdateBlockEntity;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
-import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.EnchantmentTags;
@@ -15,7 +13,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.attribute.EnvironmentAttributes;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -23,15 +20,18 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.level.storage.TagValueInput;
 import org.jetbrains.annotations.Nullable;
 
 public class IceloggedBlock extends HalfTransparentBlock implements EntityBlock {
+    public static final MapCodec<IceloggedBlock> CODEC = simpleCodec(IceloggedBlock::new);
+
+    public MapCodec<? extends IceloggedBlock> codec() {
+        return CODEC;
+    }
+
     public IceloggedBlock(Properties properties) {
         super(properties);
     }

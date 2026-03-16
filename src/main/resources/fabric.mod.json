@@ -7,7 +7,7 @@
   "authors": [],
   "contact": {},
   "license": "All-Rights-Reserved",
-  "icon": "assets/iceloggedblocks/icon.png",
+  "icon": "assets/iceloggedblocks/icelogged.png",
   "environment": "*",
   "entrypoints": {
     "client": [

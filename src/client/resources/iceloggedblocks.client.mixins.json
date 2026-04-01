@@ -5,12 +5,14 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "HalfTransparentBlockMixin",
-    "SpecialModelRenderersMixin"
+    "SpecialModelRenderersMixin",
+    "BlockEntityRenderStateAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "overwrites": {
     "requireAnnotations": true
-  }
+  },
+  "mixins": []
 }

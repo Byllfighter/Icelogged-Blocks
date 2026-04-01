@@ -7,19 +7,14 @@ import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
 import com.nottouchedgrass.icelogged.components.IceloggedComponent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.TypedEntityData;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 import org.joml.Vector3fc;
+import org.jspecify.annotations.NonNull;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
@@ -37,7 +32,7 @@ public record IceloggedBlockEntitySpecialRenderer(IceloggedBlockEntityRenderer r
     public static final Map<IceloggedComponent, CachedIceloggedBlockEntity> CACHED_ICELOGGED_BLOCKENTITIES = new ConcurrentHashMap<>();
 
     @Override
-    public void submit(@Nullable ItemStack stack, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int j, boolean bl, int k) {
+    public void submit(@org.jspecify.annotations.Nullable ItemStack stack, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int lightCoords, int overlayCoords, boolean hasFoil, int outlineColor) {
         IceloggedComponent iceloggedComponent = stack.get(IceloggedMod.ICELOGGED_COMPONENT);
         if (iceloggedComponent != null) {
             Minecraft mc = Minecraft.getInstance();
@@ -55,8 +50,8 @@ public record IceloggedBlockEntitySpecialRenderer(IceloggedBlockEntityRenderer r
                 }
                 IceloggedBlockEntityRenderState renderState = renderer.createRenderState();
                 renderer.extractRenderState(blockEntity, renderState, mc.level.getGameTime(), mc.getCameraEntity().getLookAngle(), null);
-                renderState.lightCoords = i;
-                renderer.submit(renderState, poseStack, submitNodeCollector, Minecraft.getInstance().gameRenderer.getLevelRenderState().cameraRenderState);
+                renderState.lightCoords = lightCoords;
+                renderer.submit(renderState, poseStack, submitNodeCollector, mc.gameRenderer.getGameRenderState().levelRenderState.cameraRenderState);
 
                 poseStack.popPose();
             }
@@ -102,21 +97,20 @@ public record IceloggedBlockEntitySpecialRenderer(IceloggedBlockEntityRenderer r
     }
 
 
-    @Nullable
-    public ItemStack extractArgument(ItemStack stack) {
+    public @NonNull ItemStack extractArgument(@NonNull ItemStack stack) {
         return stack;
     }
 
-    public record Unbaked() implements SpecialModelRenderer.Unbaked {
-        public static final MapCodec<IceloggedBlockEntitySpecialRenderer.Unbaked> MAP_CODEC = MapCodec.unit(Unbaked::new);
+    public record Unbaked() implements NoDataSpecialModelRenderer.Unbaked {
+        public static final MapCodec<Unbaked> MAP_CODEC = MapCodec.unit(Unbaked::new);
 
-        public MapCodec<IceloggedBlockEntitySpecialRenderer.Unbaked> type() {
+        public @NonNull MapCodec<Unbaked> type() {
             return MAP_CODEC;
         }
 
-        public SpecialModelRenderer<?> bake(SpecialModelRenderer.BakingContext bakingContext) {
+        public SpecialModelRenderer bake(SpecialModelRenderer.@NonNull BakingContext bakingContext) {
             Minecraft mc = Minecraft.getInstance();
-            return new IceloggedBlockEntitySpecialRenderer(new IceloggedBlockEntityRenderer(new BlockEntityRendererProvider.Context(mc.getBlockEntityRenderDispatcher(), mc.getBlockRenderer(), mc.getItemModelResolver(), mc.getItemRenderer(), mc.getEntityRenderDispatcher(), bakingContext.entityModelSet(), mc.font, bakingContext.materials(), mc.playerSkinRenderCache())));
+            return new IceloggedBlockEntitySpecialRenderer(new IceloggedBlockEntityRenderer(null));
         }
     }
 }

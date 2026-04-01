@@ -9,8 +9,6 @@ import com.nottouchedgrass.icelogged.payloads.S2CUpdateBlockEntity;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendering.v1.SpecialBlockRendererRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
@@ -43,12 +41,12 @@ public class IceloggedModClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        BlockRenderLayerMap.putBlock(
-                IceloggedMod.ICELOGGED_BLOCK,
-                ChunkSectionLayer.TRANSLUCENT
-        );
+        //BlockRenderLayerMap.putBlock(
+        //        IceloggedMod.ICELOGGED_BLOCK,
+        //        ChunkSectionLayer.TRANSLUCENT
+        //);
         BlockEntityRenderers.register(IceloggedMod.ICELOGGED_BLOCK_ENTITY, IceloggedBlockEntityRenderer::new);
-        SpecialBlockRendererRegistry.register(IceloggedMod.ICELOGGED_BLOCK, new IceloggedBlockEntitySpecialRenderer.Unbaked());
+        //SpecialBlockRendererRegistry.register(IceloggedMod.ICELOGGED_BLOCK, new IceloggedBlockEntitySpecialRenderer.Unbaked());
 
         ClientTickEvents.START_CLIENT_TICK.register((client) -> {
             //IceloggedMod.LOGGER.info(String.valueOf(IceloggedBlockEntitySpecialRenderer.CACHED_ICELOGGED_BLOCKENTITIES.size()));

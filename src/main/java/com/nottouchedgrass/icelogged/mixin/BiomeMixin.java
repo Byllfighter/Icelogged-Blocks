@@ -26,7 +26,7 @@ public abstract class BiomeMixin {
     )
     private boolean allowLiquidContainers(
             boolean original,
-            @Local BlockState blockState
+            @Local(name = "blockState") BlockState blockState
     ) {
         return original || blockState.getBlock() instanceof LiquidBlockContainer;
     }

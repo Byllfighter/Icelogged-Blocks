@@ -2,9 +2,11 @@ package com.nottouchedgrass.icelogged.client;
 
 import com.nottouchedgrass.icelogged.IceloggedMod;
 import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.CardinalLighting;
 import net.minecraft.world.level.ColorResolver;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -15,20 +17,20 @@ import org.jspecify.annotations.Nullable;
 
 public class IceloggedBlockAndTintGetter implements BlockAndTintGetter {
 
-    public Level level;
+    public ClientLevel level;
 
-    public IceloggedBlockAndTintGetter(Level level) {
+    public IceloggedBlockAndTintGetter(ClientLevel level) {
         this.level = level;
-    }
-
-    @Override
-    public float getShade(Direction direction, boolean bl) {
-        return level.getShade(direction, bl);
     }
 
     @Override
     public LevelLightEngine getLightEngine() {
         return level.getLightEngine();
+    }
+
+    @Override
+    public CardinalLighting cardinalLighting() {
+        return level.cardinalLighting();
     }
 
     @Override

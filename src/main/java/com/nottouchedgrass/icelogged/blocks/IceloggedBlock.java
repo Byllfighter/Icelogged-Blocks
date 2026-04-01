@@ -63,7 +63,7 @@ public class IceloggedBlock extends HalfTransparentBlock implements EntityBlock 
 
 
     protected void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-        if (serverLevel.getBrightness(LightLayer.BLOCK, blockPos) > 11 - blockState.getLightBlock()) {
+        if (serverLevel.getBrightness(LightLayer.BLOCK, blockPos) > 11 - blockState.getLightDampening()) {
             this.melt(blockState, serverLevel, blockPos, serverLevel.getBlockEntity(blockPos));
         }
     }

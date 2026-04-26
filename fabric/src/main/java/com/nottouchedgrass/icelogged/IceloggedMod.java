@@ -1,6 +1,8 @@
 package com.nottouchedgrass.icelogged;
 
+import com.nottouchedgrass.icelogged.blockentities.FrostedIceloggedBlockEntity;
 import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
+import com.nottouchedgrass.icelogged.blocks.FrostedIceloggedBlock;
 import com.nottouchedgrass.icelogged.blocks.IceloggedBlock;
 import com.nottouchedgrass.icelogged.components.IceloggedComponent;
 import com.nottouchedgrass.icelogged.mixin.ItemsAccessor;
@@ -17,6 +19,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FrostedIceBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
@@ -26,6 +29,8 @@ public class IceloggedMod implements ModInitializer {
     public static final Item ICELOGGED_BLOCK_ITEM = ItemsAccessor._IceloggedBlocks$invokeRegisterBlock(ICELOGGED_BLOCK);
     public static final BlockEntityType<IceloggedBlockEntity> ICELOGGED_BLOCK_ENTITY = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, Constants.ICELOGGED_BLOCK_ENTITY_ID, FabricBlockEntityTypeBuilder.create(IceloggedBlockEntity::new, ICELOGGED_BLOCK).build());
 
+    public static final Block FROSTED_ICELOGGED_BLOCK = Blocks.register(ResourceKey.create(Registries.BLOCK, Constants.FROSTED_ICELOGGED_BLOCK_ID), FrostedIceloggedBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.ICE));
+    public static final BlockEntityType<FrostedIceloggedBlockEntity> FROSTED_ICELOGGED_BLOCK_ENTITY = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, Constants.FROSTED_ICELOGGED_BLOCK_ID, FabricBlockEntityTypeBuilder.create(FrostedIceloggedBlockEntity::new, FROSTED_ICELOGGED_BLOCK).build());
 
     public static final DataComponentType<IceloggedComponent> ICELOGGED_COMPONENT = Registry.register(
             BuiltInRegistries.DATA_COMPONENT_TYPE,

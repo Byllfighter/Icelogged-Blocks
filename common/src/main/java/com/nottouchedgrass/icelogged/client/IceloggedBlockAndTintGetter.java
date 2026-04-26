@@ -1,11 +1,9 @@
 package com.nottouchedgrass.icelogged.client;
 
-import com.nottouchedgrass.icelogged.Constants;
 import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.CardinalLighting;
 import net.minecraft.world.level.ColorResolver;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -44,7 +42,7 @@ public class IceloggedBlockAndTintGetter implements BlockAndTintGetter {
 
     @Override
     public BlockState getBlockState(BlockPos blockPos) {
-        if (level.getBlockState(blockPos).is(BuiltInRegistries.BLOCK.getValue(Constants.ICELOGGED_BLOCK_ID))) {
+        //if (level.getBlockState(blockPos).is(BuiltInRegistries.BLOCK.getValue(Constants.ICELOGGED_BLOCK_ID))) {
             BlockEntity blockEntity = level.getBlockEntity(blockPos);
             if (blockEntity != null) {
                 if (blockEntity instanceof IceloggedBlockEntity iceloggedBlockEntity) {
@@ -53,7 +51,7 @@ public class IceloggedBlockAndTintGetter implements BlockAndTintGetter {
                     }
                 }
             }
-        }
+        //}
         return level.getBlockState(blockPos);
     }
 

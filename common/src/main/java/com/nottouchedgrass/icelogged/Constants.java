@@ -12,5 +12,9 @@ public class Constants {
 
 	public static final Identifier ICELOGGED_BLOCK_ID = Identifier.fromNamespaceAndPath(Constants.MODID, "icelogged");
 	public static final Identifier ICELOGGED_BLOCK_ENTITY_ID = Identifier.fromNamespaceAndPath(Constants.MODID, "icelogged");
+
 	public static final Identifier ICELOGGED_COMPONENT_ID = Identifier.fromNamespaceAndPath(Constants.MODID, "icelogged");
+
+	public static final Identifier FROSTED_ICELOGGED_BLOCK_ID = Identifier.fromNamespaceAndPath(Constants.MODID, "frosted_icelogged");
+	public static final Identifier FROSTED_ICELOGGED_BLOCK_ENTITY_ID = Identifier.fromNamespaceAndPath(Constants.MODID, "frosted_icelogged");
 }

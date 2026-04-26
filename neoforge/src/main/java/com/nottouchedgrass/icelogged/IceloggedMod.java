@@ -1,7 +1,9 @@
 package com.nottouchedgrass.icelogged;
 
 
+import com.nottouchedgrass.icelogged.blockentities.FrostedIceloggedBlockEntity;
 import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
+import com.nottouchedgrass.icelogged.blocks.FrostedIceloggedBlock;
 import com.nottouchedgrass.icelogged.blocks.IceloggedBlock;
 import com.nottouchedgrass.icelogged.components.IceloggedComponent;
 import com.nottouchedgrass.icelogged.mixin.BlockPropertiesAccessor;
@@ -39,6 +41,9 @@ public class IceloggedMod {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<IceloggedBlockEntity>> ICELOGGED_BLOCK_ENTITY = BLOCK_ENTITIES.register(Constants.ICELOGGED_BLOCK_ENTITY_ID.getPath(), () -> new BlockEntityType<>(IceloggedBlockEntity::new, Set.of(ICELOGGED_BLOCK.get())));
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<IceloggedComponent>> ICELOGGED_COMPONENT = DATA_COMPONENT_TYPES.register(Constants.ICELOGGED_COMPONENT_ID.getPath(), () -> DataComponentType.<IceloggedComponent>builder().persistent(IceloggedComponent.CODEC).networkSynchronized(IceloggedComponent.STREAM_CODEC).cacheEncoding().build());
+
+    public static final DeferredBlock<Block> FROSTED_ICELOGGED_BLOCK = BLOCKS.registerBlock(Constants.FROSTED_ICELOGGED_BLOCK_ID.getPath(), properties -> new FrostedIceloggedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ICE).setId(((BlockPropertiesAccessor)properties)._IceloggedBlocks$getId())));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FrostedIceloggedBlockEntity>> FROSTED_ICELOGGED_BLOCK_ENTITY = BLOCK_ENTITIES.register(Constants.FROSTED_ICELOGGED_BLOCK_ENTITY_ID.getPath(), () -> new BlockEntityType<>(FrostedIceloggedBlockEntity::new, Set.of(FROSTED_ICELOGGED_BLOCK.get())));
 
 
     public IceloggedMod(IEventBus eventBus) {

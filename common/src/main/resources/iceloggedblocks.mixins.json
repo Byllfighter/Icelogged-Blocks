@@ -7,9 +7,12 @@
   "mixins": [
     "BiomeMixin",
     "BlockPropertiesAccessor",
+    "FrostedIceBlockMixin",
     "ItemsAccessor",
     "ItemStackMixin",
-    "ServerLevelMixin"
+    "ReplaceDiskMixin",
+    "ServerLevelMixin",
+    "SimpleStateProviderAccessor"
   ],
   "client": [
     "client.BlockEntityRenderStateAccessor",

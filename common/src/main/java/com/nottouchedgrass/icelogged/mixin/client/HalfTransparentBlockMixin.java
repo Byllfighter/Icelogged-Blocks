@@ -30,5 +30,10 @@ public abstract class HalfTransparentBlockMixin {
                 cir.setReturnValue(true);
             }
         }
+        if (state.is(Blocks.FROSTED_ICE)) {
+            if (neighbor.is(BuiltInRegistries.BLOCK.getValue(Constants.FROSTED_ICELOGGED_BLOCK_ID))) {
+                cir.setReturnValue(true);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 {
   "block.iceloggedblocks.icelogged": "Frozen Block",
-  "block.iceloggedblocks.icelogged.contains": "Contains: %s"
+  "block.iceloggedblocks.icelogged.contains": "Contains: %s",
+  "block.iceloggedblocks.frosted_icelogged": "Frozen Block"
 }

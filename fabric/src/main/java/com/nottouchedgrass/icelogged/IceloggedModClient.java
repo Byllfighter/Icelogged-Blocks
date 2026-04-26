@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 public class IceloggedModClient {
     public static void init() {
         BlockEntityRenderers.register(IceloggedMod.ICELOGGED_BLOCK_ENTITY, IceloggedBlockEntityRenderer::new);
+        BlockEntityRenderers.register(IceloggedMod.FROSTED_ICELOGGED_BLOCK_ENTITY, IceloggedBlockEntityRenderer::new);
 
         ClientTickEvents.START_CLIENT_TICK.register(CommonClassClient::onTick);
 

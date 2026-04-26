@@ -16,6 +16,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.TagValueOutput;
@@ -32,7 +33,11 @@ public class IceloggedBlockEntity extends BlockEntity {
     public Optional<CompoundTag> innerBlockEntity;
 
     public IceloggedBlockEntity(BlockPos pos, BlockState state) {
-        super(BuiltInRegistries.BLOCK_ENTITY_TYPE.getValue(Constants.ICELOGGED_BLOCK_ENTITY_ID), pos, state);
+        this(BuiltInRegistries.BLOCK_ENTITY_TYPE.getValue(Constants.ICELOGGED_BLOCK_ENTITY_ID), pos, state);
+    }
+
+    public IceloggedBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
         this.innerState = Optional.empty();
         this.innerBlockEntity = Optional.empty();
         //this.innerState = Optional.of(Blocks.ACACIA_PLANKS.defaultBlockState());

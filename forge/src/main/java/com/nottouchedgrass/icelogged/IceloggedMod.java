@@ -1,6 +1,8 @@
 package com.nottouchedgrass.icelogged;
 
+import com.nottouchedgrass.icelogged.blockentities.FrostedIceloggedBlockEntity;
 import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
+import com.nottouchedgrass.icelogged.blocks.FrostedIceloggedBlock;
 import com.nottouchedgrass.icelogged.blocks.IceloggedBlock;
 import com.nottouchedgrass.icelogged.components.IceloggedComponent;
 import com.nottouchedgrass.icelogged.mixin.BlockPropertiesAccessor;
@@ -40,6 +42,9 @@ public class IceloggedMod {
     public static final RegistryObject<BlockEntityType<IceloggedBlockEntity>> ICELOGGED_BLOCK_ENTITY = BLOCK_ENTITIES.register(Constants.ICELOGGED_BLOCK_ENTITY_ID.getPath(), () -> new BlockEntityType<>(IceloggedBlockEntity::new, Set.of(ICELOGGED_BLOCK.get())));
 
     public static final RegistryObject<DataComponentType<IceloggedComponent>> ICELOGGED_COMPONENT = DATA_COMPONENT_TYPES.register(Constants.ICELOGGED_COMPONENT_ID.getPath(), () -> DataComponentType.<IceloggedComponent>builder().persistent(IceloggedComponent.CODEC).networkSynchronized(IceloggedComponent.STREAM_CODEC).cacheEncoding().build());
+
+    public static final RegistryObject<Block> FROSTED_ICELOGGED_BLOCK = BLOCKS.register(Constants.FROSTED_ICELOGGED_BLOCK_ID.getPath(), () -> new FrostedIceloggedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ICE).setId(BLOCKS.key(Constants.FROSTED_ICELOGGED_BLOCK_ID.getPath()))));
+    public static final RegistryObject<BlockEntityType<FrostedIceloggedBlockEntity>> FROSTED_ICELOGGED_BLOCK_ENTITY = BLOCK_ENTITIES.register(Constants.FROSTED_ICELOGGED_BLOCK_ENTITY_ID.getPath(), () -> new BlockEntityType<>(FrostedIceloggedBlockEntity::new, Set.of(FROSTED_ICELOGGED_BLOCK.get())));
 
     // Networking
     private static final int PROTOCOL_VERSION = 1;

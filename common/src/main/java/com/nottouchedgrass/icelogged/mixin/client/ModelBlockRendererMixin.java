@@ -26,14 +26,14 @@ public class ModelBlockRendererMixin {
             BlockAndTintGetter level, BlockState state, Direction direction, BlockPos neighborPos, CallbackInfoReturnable<Boolean> cir
     ) {
         if (cir.getReturnValue()) {
-            if (level.getBlockState(neighborPos).is(BuiltInRegistries.BLOCK.getValue(Constants.ICELOGGED_BLOCK_ID))) {
+            //if (level.getBlockState(neighborPos).is(BuiltInRegistries.BLOCK.getValue(Constants.ICELOGGED_BLOCK_ID))) {
                 BlockEntity blockEntity = level.getBlockEntity(neighborPos);
                 if (blockEntity instanceof IceloggedBlockEntity iceloggedBlockEntity) {
                     iceloggedBlockEntity.innerState.ifPresent(innerState -> {
                         cir.setReturnValue(Block.shouldRenderFace(state, innerState, direction));
                     });
                 }
-            }
+            //}
         }
     }
 }

@@ -29,7 +29,6 @@ public class CommonClassClient {
     public static final Map<BlockEntityUpdateFunctionKey, BlockEntityUpdateFunctionValue> BLOCK_ENTITY_UPDATE = new ConcurrentHashMap<>();
 
     public static void init() {
-
     }
 
     public static void onTick(Minecraft client) {

@@ -1,5 +1,6 @@
 package com.nottouchedgrass.icelogged.mixin.client;
 
+import com.nottouchedgrass.icelogged.CommonClass;
 import com.nottouchedgrass.icelogged.Constants;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -26,12 +27,12 @@ public abstract class HalfTransparentBlockMixin {
             CallbackInfoReturnable<Boolean> cir
     ) {
         if (state.is(Blocks.ICE)) {
-            if (neighbor.is(BuiltInRegistries.BLOCK.getValue(Constants.ICELOGGED_BLOCK_ID))) {
+            if (neighbor.is(CommonClass.ICELOGGED_BLOCK.get())) {
                 cir.setReturnValue(true);
             }
         }
         if (state.is(Blocks.FROSTED_ICE)) {
-            if (neighbor.is(BuiltInRegistries.BLOCK.getValue(Constants.FROSTED_ICELOGGED_BLOCK_ID))) {
+            if (neighbor.is(CommonClass.FROSTED_ICELOGGED_BLOCK.get())) {
                 cir.setReturnValue(true);
             }
         }

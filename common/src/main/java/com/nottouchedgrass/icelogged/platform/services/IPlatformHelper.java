@@ -1,5 +1,6 @@
 package com.nottouchedgrass.icelogged.platform.services;
 
+import com.nottouchedgrass.icelogged.helper.registry.UniversalRegistry;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -41,4 +42,6 @@ public interface IPlatformHelper {
     void sendPayloadToClient(CustomPacketPayload payload, ServerPlayer player);
 
     boolean isClient();
+
+    UniversalRegistry createUniversalRegistry();
 }

@@ -2,7 +2,7 @@ package com.nottouchedgrass.icelogged.client.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.MapCodec;
-import com.nottouchedgrass.icelogged.Constants;
+import com.nottouchedgrass.icelogged.CommonClass;
 import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
 import com.nottouchedgrass.icelogged.components.IceloggedComponent;
 import net.minecraft.client.Minecraft;
@@ -10,8 +10,6 @@ import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.ItemStack;
 import org.joml.Vector3f;
 import org.joml.Vector3fc;
@@ -35,7 +33,7 @@ public record IceloggedBlockEntitySpecialRenderer(IceloggedBlockEntityRenderer r
 
     @Override
     public void submit(@org.jspecify.annotations.Nullable ItemStack stack, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int lightCoords, int overlayCoords, boolean hasFoil, int outlineColor) {
-        IceloggedComponent iceloggedComponent = stack.get((DataComponentType<IceloggedComponent>) BuiltInRegistries.DATA_COMPONENT_TYPE.getValue(Constants.ICELOGGED_COMPONENT_ID));
+        IceloggedComponent iceloggedComponent = stack.get(CommonClass.ICELOGGED_COMPONENT.get());
         if (iceloggedComponent != null) {
             Minecraft mc = Minecraft.getInstance();
             if (mc.level != null) {
@@ -53,7 +51,7 @@ public record IceloggedBlockEntitySpecialRenderer(IceloggedBlockEntityRenderer r
                 IceloggedBlockEntityRenderState renderState = renderer.createRenderState();
                 renderer.extractRenderState(blockEntity, renderState, mc.level.getGameTime(), mc.getCameraEntity().getLookAngle(), null);
                 renderState.lightCoords = lightCoords;
-                renderer.submit(renderState, poseStack, submitNodeCollector, mc.gameRenderer.getGameRenderState().levelRenderState.cameraRenderState);
+                renderer.submit(renderState, poseStack, submitNodeCollector, mc.gameRenderer.gameRenderState().levelRenderState.cameraRenderState);
 
                 poseStack.popPose();
             }

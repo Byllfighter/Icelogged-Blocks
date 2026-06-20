@@ -1,12 +1,10 @@
 package com.nottouchedgrass.icelogged.mixin.client;
 
-import com.nottouchedgrass.icelogged.Constants;
 import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
 import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.client.renderer.block.ModelBlockRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;

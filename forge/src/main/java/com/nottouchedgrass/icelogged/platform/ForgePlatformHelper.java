@@ -1,6 +1,8 @@
 package com.nottouchedgrass.icelogged.platform;
 
 import com.nottouchedgrass.icelogged.IceloggedMod;
+import com.nottouchedgrass.icelogged.helper.registry.ForgeRegistry;
+import com.nottouchedgrass.icelogged.helper.registry.UniversalRegistry;
 import com.nottouchedgrass.icelogged.platform.services.IPlatformHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -42,5 +44,10 @@ public class ForgePlatformHelper implements IPlatformHelper {
     @Override
     public boolean isClient() {
         return FMLEnvironment.dist.isClient();
+    }
+
+    @Override
+    public UniversalRegistry createUniversalRegistry() {
+        return new ForgeRegistry();
     }
 }

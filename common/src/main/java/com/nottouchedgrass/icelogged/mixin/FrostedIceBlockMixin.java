@@ -1,5 +1,6 @@
 package com.nottouchedgrass.icelogged.mixin;
 
+import com.nottouchedgrass.icelogged.CommonClass;
 import com.nottouchedgrass.icelogged.Constants;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
@@ -21,7 +22,7 @@ public class FrostedIceBlockMixin {
     private boolean neighborChanged(BlockState instance, Object o) {
         if (instance.is((Block) o)) return true;
         if (o == this) {
-            instance.is(BuiltInRegistries.BLOCK.getValue(Constants.FROSTED_ICELOGGED_BLOCK_ID));
+            instance.is(CommonClass.FROSTED_ICELOGGED_BLOCK.get());
         }
         return false;
     }
@@ -36,7 +37,7 @@ public class FrostedIceBlockMixin {
     private boolean fewerNeigboursThan(BlockState instance, Object o) {
         if (instance.is((Block) o)) return true;
         if (o == this) {
-            instance.is(BuiltInRegistries.BLOCK.getValue(Constants.FROSTED_ICELOGGED_BLOCK_ID));
+            instance.is(CommonClass.FROSTED_ICELOGGED_BLOCK.get());
         }
         return false;
     }

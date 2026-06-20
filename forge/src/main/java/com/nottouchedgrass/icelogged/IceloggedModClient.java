@@ -19,8 +19,8 @@ public class IceloggedModClient {
     }
 
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(IceloggedMod.ICELOGGED_BLOCK_ENTITY.get(), IceloggedBlockEntityRenderer::new);
-        event.registerBlockEntityRenderer(IceloggedMod.FROSTED_ICELOGGED_BLOCK_ENTITY.get(), IceloggedBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(CommonClass.ICELOGGED_BLOCK_ENTITY.get(), IceloggedBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(CommonClass.FROSTED_ICELOGGED_BLOCK_ENTITY.get(), IceloggedBlockEntityRenderer::new);
     }
 
 }

@@ -2,6 +2,7 @@ package com.nottouchedgrass.icelogged.components;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.nottouchedgrass.icelogged.CommonClass;
 import com.nottouchedgrass.icelogged.Constants;
 import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
 import net.minecraft.ChatFormatting;
@@ -72,7 +73,7 @@ public final class IceloggedComponent implements TooltipProvider {
     }
 
     public IceloggedBlockEntity createBlockEntity(Level level, BlockPos pos) {
-        IceloggedBlockEntity blockEntity = new IceloggedBlockEntity(pos, BuiltInRegistries.BLOCK.getValue(Constants.ICELOGGED_BLOCK_ID).defaultBlockState());
+        IceloggedBlockEntity blockEntity = new IceloggedBlockEntity(pos, CommonClass.ICELOGGED_BLOCK.get().defaultBlockState());
         blockEntity.setLevel(level);
         blockEntity.innerState = this.innerState;
         blockEntity.innerBlockEntity = this.innerBlockEntity;

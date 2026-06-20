@@ -1,5 +1,7 @@
 package com.nottouchedgrass.icelogged.platform;
 
+import com.nottouchedgrass.icelogged.helper.registry.FabricRegistry;
+import com.nottouchedgrass.icelogged.helper.registry.UniversalRegistry;
 import com.nottouchedgrass.icelogged.platform.services.IPlatformHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -40,5 +42,10 @@ public class FabricPlatformHelper implements IPlatformHelper {
     @Override
     public boolean isClient() {
         return FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT;
+    }
+
+    @Override
+    public UniversalRegistry createUniversalRegistry() {
+        return new FabricRegistry();
     }
 }

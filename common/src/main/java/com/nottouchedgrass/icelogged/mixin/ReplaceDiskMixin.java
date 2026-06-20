@@ -1,5 +1,6 @@
 package com.nottouchedgrass.icelogged.mixin;
 
+import com.nottouchedgrass.icelogged.CommonClass;
 import com.nottouchedgrass.icelogged.Constants;
 import com.nottouchedgrass.icelogged.blockentities.FrostedIceloggedBlockEntity;
 import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
@@ -118,7 +119,7 @@ public abstract class ReplaceDiskMixin {
         if (this._IceloggedBlocks$canBeIcelogged) {
             BlockState waterState = instance.getBlockState(blockPos);
             if (waterState.getBlock() instanceof LiquidBlockContainer && !(waterState.getBlock() instanceof LiquidBlock)) {
-                BlockState newState = BuiltInRegistries.BLOCK.getValue(Constants.FROSTED_ICELOGGED_BLOCK_ID).defaultBlockState();
+                BlockState newState = CommonClass.FROSTED_ICELOGGED_BLOCK.get().defaultBlockState();
                 IceloggedBlockEntity blockEntity = new FrostedIceloggedBlockEntity(blockPos, newState);
                 blockEntity.innerState = Optional.of(waterState.trySetValue(BlockStateProperties.WATERLOGGED, false));
                 BlockEntity waterBlockEntity = instance.getBlockEntity(blockPos);

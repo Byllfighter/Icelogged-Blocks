@@ -16,6 +16,7 @@
   ],
   "client": [
     "client.BlockEntityRenderStateAccessor",
+    "client.FeatureRenderDispatcherMixin",
     "client.HalfTransparentBlockMixin",
     "client.ModelBlockRendererMixin",
     "client.SpecialModelRenderersMixin"

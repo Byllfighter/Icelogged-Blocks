@@ -1,5 +1,6 @@
 package com.nottouchedgrass.icelogged.blockentities;
 
+import com.nottouchedgrass.icelogged.CommonClass;
 import com.nottouchedgrass.icelogged.Constants;
 import com.nottouchedgrass.icelogged.blocks.IceloggedBlock;
 import com.nottouchedgrass.icelogged.components.IceloggedComponent;
@@ -33,7 +34,7 @@ public class IceloggedBlockEntity extends BlockEntity {
     public Optional<CompoundTag> innerBlockEntity;
 
     public IceloggedBlockEntity(BlockPos pos, BlockState state) {
-        this(BuiltInRegistries.BLOCK_ENTITY_TYPE.getValue(Constants.ICELOGGED_BLOCK_ENTITY_ID), pos, state);
+        this(CommonClass.ICELOGGED_BLOCK_ENTITY.get(), pos, state);
     }
 
     public IceloggedBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -86,7 +87,7 @@ public class IceloggedBlockEntity extends BlockEntity {
     @Override
     protected void applyImplicitComponents(DataComponentGetter dataComponentGetter) {
         super.applyImplicitComponents(dataComponentGetter);
-        IceloggedComponent component = dataComponentGetter.getOrDefault((DataComponentType<IceloggedComponent>) BuiltInRegistries.DATA_COMPONENT_TYPE.getValue(Constants.ICELOGGED_COMPONENT_ID), IceloggedComponent.DEFAULT);
+        IceloggedComponent component = dataComponentGetter.getOrDefault(CommonClass.ICELOGGED_COMPONENT.get(), IceloggedComponent.DEFAULT);
         this.innerState = component.innerState;
         this.innerBlockEntity = component.innerBlockEntity;
     }
@@ -94,7 +95,7 @@ public class IceloggedBlockEntity extends BlockEntity {
     @Override
     protected void collectImplicitComponents(DataComponentMap.Builder builder) {
         super.collectImplicitComponents(builder);
-        builder.set((DataComponentType<IceloggedComponent>) BuiltInRegistries.DATA_COMPONENT_TYPE.getValue(Constants.ICELOGGED_COMPONENT_ID), new IceloggedComponent(innerState, innerBlockEntity));
+        builder.set(CommonClass.ICELOGGED_COMPONENT.get(), new IceloggedComponent(innerState, innerBlockEntity));
     }
 
     @Override

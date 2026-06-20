@@ -1,5 +1,6 @@
 package com.nottouchedgrass.icelogged.mixin;
 
+import com.nottouchedgrass.icelogged.CommonClass;
 import com.nottouchedgrass.icelogged.Constants;
 import com.nottouchedgrass.icelogged.blockentities.IceloggedBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -29,7 +30,7 @@ public class ServerLevelMixin {
         if (blockState.is(Blocks.ICE)) {
             BlockState waterState = instance.getBlockState(blockPos);
             if (waterState.getBlock() instanceof LiquidBlockContainer && !(waterState.getBlock() instanceof LiquidBlock)) {
-                BlockState state = BuiltInRegistries.BLOCK.getValue(Constants.ICELOGGED_BLOCK_ID).defaultBlockState();
+                BlockState state = CommonClass.ICELOGGED_BLOCK.get().defaultBlockState();
                 IceloggedBlockEntity blockEntity = new IceloggedBlockEntity(blockPos, state);
                 blockEntity.innerState = Optional.of(waterState.trySetValue(BlockStateProperties.WATERLOGGED, false));
                 BlockEntity waterBlockEntity = instance.getBlockEntity(blockPos);

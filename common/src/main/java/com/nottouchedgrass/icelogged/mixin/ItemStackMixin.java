@@ -1,5 +1,6 @@
 package com.nottouchedgrass.icelogged.mixin;
 
+import com.nottouchedgrass.icelogged.CommonClass;
 import com.nottouchedgrass.icelogged.Constants;
 import com.nottouchedgrass.icelogged.components.IceloggedComponent;
 import net.minecraft.core.component.DataComponentType;
@@ -28,6 +29,6 @@ public class ItemStackMixin {
                     target = "Lnet/minecraft/world/item/Item;appendHoverText(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/Item$TooltipContext;Lnet/minecraft/world/item/component/TooltipDisplay;Ljava/util/function/Consumer;Lnet/minecraft/world/item/TooltipFlag;)V")
     )
     private void shouldRenderFaceMixin(Item.TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, @Nullable Player player, TooltipFlag tooltipFlag, Consumer<Component> consumer, CallbackInfo ci) {
-        ((ItemStack)(Object)this).addToTooltip((DataComponentType<IceloggedComponent>) BuiltInRegistries.DATA_COMPONENT_TYPE.getValue(Constants.ICELOGGED_COMPONENT_ID), tooltipContext, tooltipDisplay, consumer, tooltipFlag);
+        ((ItemStack)(Object)this).addToTooltip(CommonClass.ICELOGGED_COMPONENT.get(), tooltipContext, tooltipDisplay, consumer, tooltipFlag);
     }
 }
